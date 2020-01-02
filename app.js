@@ -2,10 +2,12 @@ var express        = require("express"),
 	app            = express(),
 	session        = require("express-session"),
 	bodyParser     = require("body-parser"),
-	methodOverride = require("method-override");
+	methodOverride = require("method-override"),
+	forceSsl       = require('force-ssl-heroku');
 
-var routes    = require("./routes/index");
+var routes         = require("./routes/index");
 
+app.use(forceSsl);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
